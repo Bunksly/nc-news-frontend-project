@@ -15,6 +15,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Articles />} />
+        <Route path="/:topic" element={<Articles />} />
       </Routes>
     </div>
   );
