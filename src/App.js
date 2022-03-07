@@ -4,6 +4,7 @@ import Title from "./components/Title";
 import PostLink from "./components/PostLink";
 import ProfileLink from "./components/ProfileLink";
 import Articles from "./components/Articles";
+import DetailedArticle from "./components/DetailedArticle";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Articles />} />
         <Route path="/:topic" element={<Articles />} />
+        <Route path="/article/:article_id" element={<DetailedArticle />} />
       </Routes>
     </div>
   );

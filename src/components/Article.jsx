@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Article({
   article_id,
   author,
@@ -12,7 +14,9 @@ export default function Article({
     <li className="article">
       <div>
         <div>
-          <h4>{title}</h4>
+          <Link to={`/article/${article_id}`}>
+            <h4>{title}</h4>
+          </Link>
         </div>
         <div className="article-topBar">
           <h6>Topic: {topic}</h6>

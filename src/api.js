@@ -17,3 +17,15 @@ export const fetchTopics = () => {
     return data.topics;
   });
 };
+
+export const fetchArticleById = (id) => {
+  return newsAPI.get(`/articles/${id}`).then(({ data }) => {
+    return data.article;
+  });
+};
+
+export const fetchCommentsByArticleId = (id) => {
+  return newsAPI.get(`/articles/${id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+};
