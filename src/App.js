@@ -8,11 +8,11 @@ import Articles from "./components/Articles";
 function App() {
   return (
     <div className="App">
-      <div className="topBar">
+      <nav className="topBar">
         <Title />
         <PostLink />
         <ProfileLink />
-      </div>
+      </nav>
       <Routes>
         <Route path="/" element={<Articles />} />
       </Routes>

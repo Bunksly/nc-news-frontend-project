@@ -9,7 +9,7 @@ export default function Article({
 }) {
   const date = new Date(created_at);
   return (
-    <article className="article">
+    <li className="article">
       <div>
         <div>
           <h4>{title}</h4>
@@ -32,6 +32,6 @@ export default function Article({
           <h6>Comments ({comment_count})</h6>
         </div>
       </div>
-    </article>
+    </li>
   );
 }

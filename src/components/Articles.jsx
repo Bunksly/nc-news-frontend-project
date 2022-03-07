@@ -17,12 +17,12 @@ export default function Articles() {
   if (isLoading) return <p>loading...</p>;
   return (
     <section>
-      <div className="nav">
+      <nav className="nav">
         <h4>topic dd</h4>
         <h4>sort</h4>
         <h4>search</h4>
-      </div>
-      <div className="articles">
+      </nav>
+      <ul className="articles">
         {articles.map(
           ({
             article_id,
@@ -47,7 +47,7 @@ export default function Articles() {
             );
           }
         )}
-      </div>
+      </ul>
     </section>
   );
 }
