@@ -85,3 +85,6 @@
 p {
   font-size: 14px;
 }
+.errmsg {
+  color: red;
+}
