@@ -85,3 +85,8 @@
 p {
   font-size: 14px;
 }
+
+.commentVotes {
+  display: flex;
+  align-content: row;
+}

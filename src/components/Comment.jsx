@@ -28,7 +28,7 @@ export default function Comment({
       <div className="commentTopBar">
         <h5>{author}</h5>
         <h5>{date.toLocaleDateString()}</h5>
-        <div>
+        <div className="commentVotes">
           <button
             onClick={handleVote}
             value="up"
@@ -36,9 +36,7 @@ export default function Comment({
           >
             {String.fromCodePoint(0x1f53c)}
           </button>
-        </div>
-        <h5>{votes}</h5>
-        <div>
+          <h5>{votes}</h5>
           <button
             onClick={handleVote}
             value="down"
