@@ -40,13 +40,13 @@ export default function DetailedArticle() {
         <h5>Topic: {article.topic}</h5>
         <h5>Created: {date.toLocaleDateString()}</h5>
         <div>
-          <button className="detailedVoteButton">
+          <button aria-label="upvote-button" className="detailedVoteButton">
             {String.fromCodePoint(0x1f53c)}
           </button>
         </div>
         <h5>{article.votes}</h5>
         <div>
-          <button className="detailedVoteButton">
+          <button aria-label="downvote-button" className="detailedVoteButton">
             {String.fromCodePoint(0x1f53d)}
           </button>
         </div>

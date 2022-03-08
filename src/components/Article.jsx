@@ -14,7 +14,7 @@ export default function Article({
     <li className="article">
       <div>
         <div>
-          <Link to={`/article/${article_id}`}>
+          <Link aria-label="link to full article" to={`/article/${article_id}`}>
             <h4>{title}</h4>
           </Link>
         </div>
@@ -23,11 +23,11 @@ export default function Article({
           <h6>Author: {author}</h6>
           <h6>Created: {date.toLocaleDateString()}</h6>
           <div className="votesComments">
-            <button className="voteButton">
+            <button aria-label="upvote-button" className="voteButton">
               {String.fromCodePoint(0x1f53c)}
             </button>
             <h6>{votes}</h6>
-            <button className="voteButton">
+            <button aria-label="downvote-button" className="voteButton">
               {String.fromCodePoint(0x1f53d)}
             </button>
           </div>
