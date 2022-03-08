@@ -29,3 +29,15 @@ export const fetchCommentsByArticleId = (id) => {
     return data.comments;
   });
 };
+
+export const patchArticleVotebyId = (id, vote) => {
+  return newsAPI.patch(`/articles/${id}`, vote).then(({ data }) => {
+    return data.article;
+  });
+};
+
+export const patchCommentVotebyId = (id, vote) => {
+  return newsAPI.patch(`/comments/${id}`, vote).then(({ data }) => {
+    return data.comment;
+  });
+};
