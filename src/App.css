@@ -41,11 +41,47 @@
 .voteButton {
   font-size: 10px;
   margin: 0px;
-  padding: 0px;
+  padding: 10px;
   background-color: transparent;
   border: none;
 }
 
 .articles {
   padding: 0px;
+}
+
+.comments {
+  padding: 0px;
+}
+
+.commentTopBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.commentHeader {
+  text-align: left;
+}
+
+.credentials {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.detailedVoteButton {
+  margin-top: 19px;
+  height: 15px;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+}
+
+p {
+  font-size: 14px;
 }
