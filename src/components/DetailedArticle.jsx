@@ -4,8 +4,10 @@ import {
   fetchArticleById,
   fetchCommentsByArticleId,
   patchArticleVotesbyId,
+  postCommentbyId,
 } from "../api";
 import Comment from "./Comment";
+import UserDropDown from "./UserDropDown";
 
 export default function DetailedArticle() {
   const { article_id } = useParams();
@@ -16,6 +18,9 @@ export default function DetailedArticle() {
   const [comments, setComments] = useState([]);
   const [votes, setVotes] = useState(0);
   const [voteErr, setVoteErr] = useState(null);
+  const [postComment, setPostComment] = useState(null);
+  const [postErr, setPostErr] = useState(null);
+  const [isPosting, setIsPosting] = useState(false);
 
   useEffect(() => {
     setIsArticleLoading(true);
@@ -32,7 +37,7 @@ export default function DetailedArticle() {
       setComments(res);
       setIsCommentLoading(false);
     });
-  }, [article_id]);
+  }, [article_id, isPosting]);
 
   const handleUpvote = () => {
     setVotes((currCount) => currCount + 1);
@@ -52,14 +57,61 @@ export default function DetailedArticle() {
     });
   };
 
+  const handlePostComment = () => {
+    setIsPosting(!isPosting);
+    setPostComment(
+      <form onSubmit={handleSubmit} className="post-comment">
+        <div>
+          <label htmlFor="commentbody">Comment:</label>
+          <textarea id="commentbody"></textarea>
+        </div>
+        <div>
+          <UserDropDown />
+          <input type="submit" value="Submit"></input>
+        </div>
+      </form>
+    );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (event.target[0].value.length <= 10) {
+      setPostErr(
+        <p className="commentErrMsg">comment must be 10 characters or longer</p>
+      );
+    } else if (event.target[1].value === "-------") {
+      setPostErr(<p className="commentErrMsg">please select username</p>);
+    } else {
+      setPostErr(null);
+      postCommentbyId(article_id, {
+        username: event.target[1].value,
+        body: event.target[0].value,
+      }).then((res) => {
+        console.log(res);
+        setPostComment(
+          <Comment
+            key={res.comment_id}
+            comment_id={res.comment_id}
+            votes={res.votes}
+            created_at={res.created_at}
+            author={res.author}
+            body={res.body}
+          />
+        );
+      });
+    }
+  };
+
   const date = new Date(article.created_at);
+
+  console.log("mistake catcher");
 
   if (isArticleLoading) return <p>loading...</p>;
   if (isCommentsLoading) return <p>loading...</p>;
   return (
     <section>
       <h1>{article.title}</h1>
-      <p>{article.body}</p>
+      <p className="article-body">{article.body}</p>
       <p className="errmsg">{voteErr}</p>
       <div className="credentials">
         <h5>Author: {article.author}</h5>
@@ -77,8 +129,15 @@ export default function DetailedArticle() {
           </button>
         </div>
       </div>
-      <h4 className="commentHeader">Comments({article.comment_count}):</h4>
+      <div className="commentSection">
+        <h4 className="commentHeader">Comments({article.comment_count}):</h4>
+        <h5 onClick={handlePostComment} className="postComment">
+          Post Comment
+        </h5>
+      </div>
       <ul className="comments">
+        {postErr}
+        {postComment}
         {comments.map(({ comment_id, votes, created_at, author, body }) => {
           return (
             <Comment

@@ -9,6 +9,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-start;
+  max-width: 500px;
 }
 
 .nav {
@@ -16,6 +17,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-start;
+  max-width: 500px;
 }
 
 .article {
@@ -23,18 +25,28 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  max-width: 500px;
 }
 
-.article-topBar {
+.article-title {
+  margin-top: 5px;
+}
+
+.article-body {
+  margin-bottom: -20px;
+}
+
+.article-bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space;
   margin-top: -20px;
+  margin-bottom: -20px;
 }
 
 .votesComments {
   display: flex;
-  align-items: center;
+  align-items: inherit;
   justify-content: space-between;
 }
 
@@ -63,6 +75,42 @@
 
 .commentHeader {
   text-align: left;
+}
+
+.commentSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.comment {
+  border-bottom: 2px solid black;
+}
+
+.comment-body {
+  margin-bottom: -10px;
+}
+
+#commentbody {
+  width: 300px;
+  height: 50px;
+}
+
+.post-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 120px;
+  justify-content: space-between;
+  margin-top: -20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.commentErrMsg {
+  color: red;
+  margin-top: -30px;
+  margin-bottom: 25px;
 }
 
 .credentials {
