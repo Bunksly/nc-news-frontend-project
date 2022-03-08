@@ -23,15 +23,13 @@ export default function Article({
           <h6>Author: {author}</h6>
           <h6>Created: {date.toLocaleDateString()}</h6>
           <div className="votesComments">
+            <button className="voteButton">
+              {String.fromCodePoint(0x1f53c)}
+            </button>
             <h6>{votes}</h6>
-            <div>
-              <button className="voteButton">
-                {String.fromCodePoint(0x1f53c)}
-              </button>
-              <button className="voteButton">
-                {String.fromCodePoint(0x1f53d)}
-              </button>
-            </div>
+            <button className="voteButton">
+              {String.fromCodePoint(0x1f53d)}
+            </button>
           </div>
           <h6>Comments ({comment_count})</h6>
         </div>
