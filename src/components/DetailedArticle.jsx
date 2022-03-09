@@ -5,6 +5,7 @@ import {
   fetchCommentsByArticleId,
   patchArticleVotesbyId,
   postCommentbyId,
+  fetchUsers,
 } from "../api";
 import Comment from "./Comment";
 import UserDropDown from "./UserDropDown";
@@ -21,6 +22,13 @@ export default function DetailedArticle() {
   const [postComment, setPostComment] = useState(null);
   const [postErr, setPostErr] = useState(null);
   const [isPosting, setIsPosting] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchUsers().then((res) => {
+      setUsers(res);
+    });
+  }, []);
 
   useEffect(() => {
     setIsArticleLoading(true);
@@ -66,7 +74,7 @@ export default function DetailedArticle() {
           <textarea id="commentbody"></textarea>
         </div>
         <div>
-          <UserDropDown />
+          <UserDropDown users={users} />
           <input type="submit" value="Submit"></input>
         </div>
       </form>

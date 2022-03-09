@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchUsers } from "../api";
 
-export default function UserDropDown() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetchUsers().then((res) => {
-      setUsers(res);
-    });
-  }, []);
-
+export default function UserDropDown({ users }) {
+  console.log(users);
   return (
     <div>
       <label htmlFor="user-dropdown">Username: </label>
