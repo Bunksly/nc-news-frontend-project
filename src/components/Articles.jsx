@@ -3,27 +3,31 @@ import { fetchArticles } from "../api";
 import { useParams } from "react-router-dom";
 import Article from "./Article";
 import TopicDropDown from "./TopicDropDown";
+import SortDropDown from "./SortDropDown";
+import OrderDropDown from "./OrderDropDown";
 
 export default function Articles() {
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState(null);
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(topic).then((res) => {
+    fetchArticles(topic, sortBy, order).then((res) => {
       setArticles(res);
       setIsLoading(false);
     });
-  }, [topic]);
+  }, [topic, sortBy, order]);
 
   if (isLoading) return <p>loading...</p>;
   return (
     <section>
       <nav className="nav">
         <TopicDropDown />
-        <h4>sort</h4>
-        <h4>search</h4>
+        <SortDropDown setSortBy={setSortBy} />
+        <OrderDropDown setOrder={setOrder} />
       </nav>
       <ul className="articles">
         {articles.map(
