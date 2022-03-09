@@ -1,4 +1,4 @@
-export default function SortDropDown({ setSortBy }) {
+export default function SortDropDown({ setSortBy, selected }) {
   const handleSortChange = (event) => {
     if (event.target.value === "-------") {
       setSortBy(null);
@@ -10,7 +10,7 @@ export default function SortDropDown({ setSortBy }) {
   return (
     <form onChange={handleSortChange}>
       <label htmlFor="sortBy">Sort By:</label>
-      <select name="sortBy" id="sortList">
+      <select name="sortBy" id="sortList" value={selected}>
         <option key="-" value="-------">
           {"-------"}
         </option>

@@ -5,6 +5,9 @@ const newsAPI = axios.create({
 });
 
 export const fetchArticles = (topic, sortBy, order) => {
+  if (topic === "all") {
+    topic = null;
+  }
   return newsAPI
     .get("/articles", {
       params: { topic: topic, sort_by: sortBy, order: order },

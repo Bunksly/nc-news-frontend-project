@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import { fetchTopics } from "../api";
 import { useNavigate } from "react-router-dom";
 
-export default function TopicDropDown() {
+export default function TopicDropDown({ selected }) {
   let navigate = useNavigate();
   const HandleTopicChange = (event) => {
-    if (event.target.value === "all" || event.target.value === "-------") {
-      navigate("/");
-    } else {
-      navigate(`/${event.target.value}`);
-    }
+    navigate(`/${event.target.value}`);
   };
 
   const [topics, setTopics] = useState([]);
@@ -23,10 +19,9 @@ export default function TopicDropDown() {
   return (
     <form onChange={HandleTopicChange}>
       <label htmlFor="topics">Topic:</label>
-      <select name="topics">
-        <option key="-">{"-------"}</option>
+      <select name="topics" value={selected}>
         <option key="all" value="all">
-          All
+          all
         </option>
         {topics.map(({ slug }) => {
           return (

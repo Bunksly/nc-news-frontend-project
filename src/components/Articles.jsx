@@ -10,14 +10,20 @@ export default function Articles() {
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortBy, setSortBy] = useState(null);
-  const [order, setOrder] = useState(null);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
+  const [orderSelected, setOrderSelected] = useState(order);
+  const [sortBySelected, setSortBySelected] = useState(sortBy);
+  const [topicSelected, setTopicSelected] = useState(topic);
 
   useEffect(() => {
     setIsLoading(true);
     fetchArticles(topic, sortBy, order).then((res) => {
       setArticles(res);
       setIsLoading(false);
+      setOrderSelected(order);
+      setSortBySelected(sortBy);
+      setTopicSelected(topic);
     });
   }, [topic, sortBy, order]);
 
@@ -25,9 +31,9 @@ export default function Articles() {
   return (
     <section>
       <nav className="nav">
-        <TopicDropDown />
-        <SortDropDown setSortBy={setSortBy} />
-        <OrderDropDown setOrder={setOrder} />
+        <TopicDropDown selected={topicSelected} />
+        <SortDropDown setSortBy={setSortBy} selected={sortBySelected} />
+        <OrderDropDown setOrder={setOrder} selected={orderSelected} />
       </nav>
       <ul className="articles">
         {articles.map(
