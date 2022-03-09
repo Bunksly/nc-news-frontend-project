@@ -41,3 +41,15 @@ export const patchCommentVotesbyId = (id, vote) => {
     return data.comment;
   });
 };
+
+export const fetchUsers = () => {
+  return newsAPI.get("/users").then(({ data }) => {
+    return data.users;
+  });
+};
+
+export const postCommentbyId = (id, comment) => {
+  return newsAPI.post(`articles/${id}/comments`, comment).then(({ data }) => {
+    return data.comment;
+  });
+};

@@ -15,22 +15,14 @@ export default function Article({
       <div>
         <div>
           <Link to={`/article/${article_id}`}>
-            <h4>{title}</h4>
+            <h4 className="article-title">{title}</h4>
           </Link>
         </div>
-        <div className="article-topBar">
-          <h6>Topic: {topic}</h6>
+        <div className="article-bottom">
+          <h6>Topic:{topic}</h6>
           <h6>Author: {author}</h6>
           <h6>Created: {date.toLocaleDateString()}</h6>
-          <div className="votesComments">
-            <button className="voteButton">
-              {String.fromCodePoint(0x1f53c)}
-            </button>
-            <h6>{votes}</h6>
-            <button className="voteButton">
-              {String.fromCodePoint(0x1f53d)}
-            </button>
-          </div>
+          <h6>Votes: {votes}</h6>
           <h6>Comments ({comment_count})</h6>
         </div>
       </div>
