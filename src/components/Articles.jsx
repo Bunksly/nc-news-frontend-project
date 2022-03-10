@@ -3,27 +3,37 @@ import { fetchArticles } from "../api";
 import { useParams } from "react-router-dom";
 import Article from "./Article";
 import TopicDropDown from "./TopicDropDown";
+import SortDropDown from "./SortDropDown";
+import OrderDropDown from "./OrderDropDown";
 
 export default function Articles() {
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
+  const [orderSelected, setOrderSelected] = useState(order);
+  const [sortBySelected, setSortBySelected] = useState(sortBy);
+  const [topicSelected, setTopicSelected] = useState(topic);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(topic).then((res) => {
+    fetchArticles(topic, sortBy, order).then((res) => {
       setArticles(res);
       setIsLoading(false);
+      setOrderSelected(order);
+      setSortBySelected(sortBy);
+      setTopicSelected(topic);
     });
-  }, [topic]);
+  }, [topic, sortBy, order]);
 
   if (isLoading) return <p>loading...</p>;
   return (
     <section>
       <nav className="nav">
-        <TopicDropDown />
-        <h4>sort</h4>
-        <h4>search</h4>
+        <TopicDropDown selected={topicSelected} />
+        <SortDropDown setSortBy={setSortBy} selected={sortBySelected} />
+        <OrderDropDown setOrder={setOrder} selected={orderSelected} />
       </nav>
       <ul className="articles">
         {articles.map(

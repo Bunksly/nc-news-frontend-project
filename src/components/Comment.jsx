@@ -35,6 +35,7 @@ export default function Comment({
   const date = new Date(created_at);
   return (
     <article className="comment">
+      <p className="errmsg">{voteErr}</p>
       <p className="comment-body">{body}</p>
       <div className="commentTopBar">
         <h5>{author}</h5>
