@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function TopicDropDown({ selected }) {
   let navigate = useNavigate();
   const handleTopicChange = (event) => {
-    navigate(`/${event.target.value}`);
+    navigate(`/articles/${event.target.value}`);
   };
 
   const [topics, setTopics] = useState([]);

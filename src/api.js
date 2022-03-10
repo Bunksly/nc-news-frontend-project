@@ -64,3 +64,9 @@ export const deleteCommentById = (id) => {
     return res;
   });
 };
+
+export const fetchUserbyUsername = (username) => {
+  return newsAPI.get(`/users/${username}`).then(({ data }) => {
+    return data.user;
+  });
+};
