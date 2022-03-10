@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import UserDropDown from "./UserDropDown";
 import Comment from "./Comment";
 import { UserContext } from "../contexts/user-context";
-import { fetchCommentsByArticleId, postCommentbyId, fetchUsers } from "../api";
+import { fetchCommentsByArticleId, postCommentbyId } from "../api";
 
 export default function CommentsList({ article_id, comment_count }) {
   const [isCommentsLoading, setIsCommentLoading] = useState(true);
@@ -14,18 +13,12 @@ export default function CommentsList({ article_id, comment_count }) {
   const { loggedIn, setLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
-    fetchUsers().then((res) => {
-      setUsers(res);
-    });
-  }, []);
-
-  useEffect(() => {
     setIsCommentLoading(true);
     fetchCommentsByArticleId(article_id).then((res) => {
       setComments(res);
       setIsCommentLoading(false);
     });
-  }, [article_id, isPosting]);
+  }, [article_id, isPosting, loggedIn]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +34,6 @@ export default function CommentsList({ article_id, comment_count }) {
         username: loggedIn,
         body: event.target[0].value,
       }).then((res) => {
-        console.log(res);
         setPostComment(
           <Comment
             key={res.comment_id}
@@ -50,6 +42,7 @@ export default function CommentsList({ article_id, comment_count }) {
             created_at={res.created_at}
             author={res.author}
             body={res.body}
+            loggedIn={loggedIn}
           />
         );
       });
@@ -91,6 +84,7 @@ export default function CommentsList({ article_id, comment_count }) {
               created_at={created_at}
               author={author}
               body={body}
+              loggedIn={loggedIn}
             />
           );
         })}

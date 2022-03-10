@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../contexts/user-context";
 import { patchCommentVotesbyId } from "../api";
 export default function Comment({
   comment_id,
@@ -9,9 +10,14 @@ export default function Comment({
 }) {
   const [commentVotes, setCommentVotes] = useState(0);
   const [voteErr, setVoteErr] = useState(null);
+  const [isYou, setIsYou] = useState(null);
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
     setCommentVotes(votes);
+    if (author === loggedIn) {
+      setIsYou(" (You)");
+    }
   }, []);
 
   const handleUpvote = () => {
@@ -38,7 +44,10 @@ export default function Comment({
       <p className="errmsg">{voteErr}</p>
       <p className="comment-body">{body}</p>
       <div className="commentTopBar">
-        <h5>{author}</h5>
+        <h5>
+          {author}
+          {isYou}
+        </h5>
         <h5>{date.toLocaleDateString()}</h5>
         <div className="votesComments">
           <div>
