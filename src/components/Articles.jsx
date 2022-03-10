@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchArticles } from "../api";
 import { useParams } from "react-router-dom";
 import Article from "./Article";
+import ErrorPage from "./ErrorPage";
 import TopicDropDown from "./TopicDropDown";
 import SortDropDown from "./SortDropDown";
 import OrderDropDown from "./OrderDropDown";
@@ -15,19 +16,27 @@ export default function Articles() {
   const [orderSelected, setOrderSelected] = useState(order);
   const [sortBySelected, setSortBySelected] = useState(sortBy);
   const [topicSelected, setTopicSelected] = useState(topic);
+  const [isErr, setisErr] = useState(false);
 
   useEffect(() => {
+    setisErr(false);
     setIsLoading(true);
-    fetchArticles(topic, sortBy, order).then((res) => {
-      setArticles(res);
-      setIsLoading(false);
-      setOrderSelected(order);
-      setSortBySelected(sortBy);
-      setTopicSelected(topic);
-    });
+    fetchArticles(topic, sortBy, order)
+      .then((res) => {
+        setArticles(res);
+        setIsLoading(false);
+        setOrderSelected(order);
+        setSortBySelected(sortBy);
+        setTopicSelected(topic);
+      })
+      .catch((err) => {
+        setisErr(true);
+        setIsLoading(false);
+      });
   }, [topic, sortBy, order]);
 
   if (isLoading) return <p>loading...</p>;
+  if (isErr) return <ErrorPage error={{ topic: topic }} />;
   return (
     <section>
       <nav className="nav">

@@ -9,8 +9,7 @@ export default function CommentsList({ article_id, comment_count }) {
   const [postComment, setPostComment] = useState(null);
   const [postErr, setPostErr] = useState(null);
   const [isPosting, setIsPosting] = useState(false);
-  const [users, setUsers] = useState([]);
-  const { loggedIn, setLoggedIn } = useContext(UserContext);
+  const { loggedIn } = useContext(UserContext);
 
   useEffect(() => {
     setIsCommentLoading(true);
@@ -19,6 +18,10 @@ export default function CommentsList({ article_id, comment_count }) {
       setIsCommentLoading(false);
     });
   }, [article_id, isPosting, loggedIn]);
+
+  useEffect(() => {
+    setPostComment(null);
+  }, [loggedIn]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

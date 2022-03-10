@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchArticleById, patchArticleVotesbyId } from "../api";
-
+import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
 
 export default function DetailedArticle() {
@@ -11,14 +11,21 @@ export default function DetailedArticle() {
   const [isArticleLoading, setIsArticleLoading] = useState(true);
   const [votes, setVotes] = useState(0);
   const [voteErr, setVoteErr] = useState(null);
+  const [isErr, setisErr] = useState(false);
 
   useEffect(() => {
+    setisErr(false);
     setIsArticleLoading(true);
-    fetchArticleById(article_id).then((res) => {
-      setArticle(res);
-      setVotes(res.votes);
-      setIsArticleLoading(false);
-    });
+    fetchArticleById(article_id)
+      .then((res) => {
+        setArticle(res);
+        setVotes(res.votes);
+        setIsArticleLoading(false);
+      })
+      .catch((err) => {
+        setisErr(true);
+        setIsArticleLoading(false);
+      });
   }, [article_id]);
 
   const handleUpvote = () => {
@@ -42,7 +49,7 @@ export default function DetailedArticle() {
   const date = new Date(article.created_at);
 
   if (isArticleLoading) return <p>loading...</p>;
-
+  if (isErr) return <ErrorPage error={{ id: article_id }} />;
   return (
     <section>
       <h1>{article.title}</h1>

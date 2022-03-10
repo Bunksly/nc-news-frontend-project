@@ -6,6 +6,7 @@ import Title from "./components/Title";
 import Profile from "./components/Profile";
 import Articles from "./components/Articles";
 import Post from "./components/Post";
+import ErrorPage from "./components/ErrorPage";
 import DetailedArticle from "./components/DetailedArticle";
 
 function App() {
@@ -18,10 +19,10 @@ function App() {
           <Profile />
         </nav>
         <Routes>
-          <Route path="/" element={<Articles />} />
-          <Route path="/:topic" element={<Articles />} />
+          <Route path="*" element={<ErrorPage error={"path"} />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:topic" element={<Articles />} />
           <Route path="/article/:article_id" element={<DetailedArticle />} />
-          <Route path="/post" element={<Post />} />
         </Routes>
       </div>
     </UserContext.Provider>

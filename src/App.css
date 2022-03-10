@@ -13,7 +13,18 @@
 }
 
 .select-user {
-  margin-top: 26px;
+  margin-top: 7px;
+}
+
+.user-pic {
+  width: 50px;
+  margin-top: 18px;
+  margin-left: 15px;
+}
+
+.user-select-area {
+  display: flex;
+  align-self: baseline;
 }
 
 .nav {
@@ -115,6 +126,14 @@
   color: red;
   margin-top: -30px;
   margin-bottom: 25px;
+}
+
+.delete-button {
+  margin-bottom: 25px;
+}
+
+.deleted-message {
+  border-bottom: 2px solid black;
 }
 
 .credentials {
