@@ -1,3 +1,3 @@
 export default function ProfileLink() {
-  return <h3>Profile</h3>;
+  return <h4>PROFILE</h4>;
 }

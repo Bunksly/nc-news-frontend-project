@@ -1,8 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Title from "./components/Title";
-import PostLink from "./components/PostLink";
-import ProfileLink from "./components/ProfileLink";
+import Profile from "./components/Profile";
 import Articles from "./components/Articles";
 import Post from "./components/Post";
 import DetailedArticle from "./components/DetailedArticle";
@@ -12,8 +11,7 @@ function App() {
     <div className="App">
       <nav className="topBar">
         <Title />
-        <PostLink />
-        <ProfileLink />
+        <Profile />
       </nav>
       <Routes>
         <Route path="/" element={<Articles />} />
