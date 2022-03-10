@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import Title from "./components/Title";
 import Profile from "./components/Profile";
 import Articles from "./components/Articles";
-import Post from "./components/Post";
 import ErrorPage from "./components/ErrorPage";
 import DetailedArticle from "./components/DetailedArticle";
 
