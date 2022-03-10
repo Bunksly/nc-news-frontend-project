@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import UserDropDown from "./UserDropDown";
 import Comment from "./Comment";
+import { UserContext } from "../contexts/user-context";
 import { fetchCommentsByArticleId, postCommentbyId, fetchUsers } from "../api";
 
 export default function CommentsList({ article_id, comment_count }) {
@@ -10,6 +11,7 @@ export default function CommentsList({ article_id, comment_count }) {
   const [postErr, setPostErr] = useState(null);
   const [isPosting, setIsPosting] = useState(false);
   const [users, setUsers] = useState([]);
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
     fetchUsers().then((res) => {
@@ -31,12 +33,12 @@ export default function CommentsList({ article_id, comment_count }) {
       setPostErr(
         <p className="commentErrMsg">comment must be 10 characters or longer</p>
       );
-    } else if (event.target[1].value === "-------") {
-      setPostErr(<p className="commentErrMsg">please select username</p>);
+    } else if (loggedIn === "-------") {
+      setPostErr(<p className="commentErrMsg">please log in</p>);
     } else {
       setPostErr(null);
       postCommentbyId(article_id, {
-        username: event.target[1].value,
+        username: loggedIn,
         body: event.target[0].value,
       }).then((res) => {
         console.log(res);
@@ -62,12 +64,12 @@ export default function CommentsList({ article_id, comment_count }) {
           <textarea id="commentbody"></textarea>
         </div>
         <div>
-          <UserDropDown users={users} />
           <input type="submit" value="Submit"></input>
         </div>
       </form>
     );
   };
+
   if (isCommentsLoading) return <p>loading...</p>;
   return (
     <section>
