@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function TopicDropDown({ selected }) {
   let navigate = useNavigate();
-  const HandleTopicChange = (event) => {
+  const handleTopicChange = (event) => {
     navigate(`/${event.target.value}`);
   };
 
@@ -17,9 +17,9 @@ export default function TopicDropDown({ selected }) {
   }, []);
 
   return (
-    <form onChange={HandleTopicChange}>
+    <form>
       <label htmlFor="topics">Topic:</label>
-      <select name="topics" value={selected}>
+      <select onChange={handleTopicChange} name="topics" value={selected}>
         <option key="all" value="all">
           all
         </option>

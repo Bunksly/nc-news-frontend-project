@@ -8,12 +8,14 @@ export default function SortDropDown({ setSortBy, selected }) {
   };
 
   return (
-    <form onChange={handleSortChange}>
+    <form>
       <label htmlFor="sortBy">Sort By:</label>
-      <select name="sortBy" id="sortList" value={selected}>
-        <option key="-" value="-------">
-          {"-------"}
-        </option>
+      <select
+        onChange={handleSortChange}
+        name="sortBy"
+        id="sortList"
+        value={selected}
+      >
         <option key="date" value="created_at">
           date created
         </option>

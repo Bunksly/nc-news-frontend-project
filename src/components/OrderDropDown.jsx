@@ -1,14 +1,17 @@
-import { useState } from "react";
-
 export default function OrderDropDown({ setOrder, selected }) {
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
   };
 
   return (
-    <form onChange={handleOrderChange}>
-      <label htmlFor="sortBy">Sort By:</label>
-      <select name="sortBy" id="sortList" value={selected}>
+    <form>
+      <label htmlFor="orderList">Order:</label>
+      <select
+        onChange={handleOrderChange}
+        name="order"
+        id="orderList"
+        value={selected}
+      >
         <option key="asc" value="asc">
           asc
         </option>

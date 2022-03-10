@@ -12,6 +12,10 @@
   max-width: 500px;
 }
 
+.select-user {
+  margin-top: 26px;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
