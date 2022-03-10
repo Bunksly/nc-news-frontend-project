@@ -117,6 +117,14 @@
   margin-bottom: 25px;
 }
 
+.delete-button {
+  margin-bottom: 25px;
+}
+
+.deleted-message {
+  border-bottom: 2px solid black;
+}
+
 .credentials {
   display: flex;
   flex-direction: row;

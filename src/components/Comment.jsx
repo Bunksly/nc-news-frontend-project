@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../contexts/user-context";
-import { patchCommentVotesbyId } from "../api";
+import { patchCommentVotesbyId, deleteCommentById } from "../api";
 export default function Comment({
   comment_id,
   votes,
@@ -11,12 +11,19 @@ export default function Comment({
   const [commentVotes, setCommentVotes] = useState(0);
   const [voteErr, setVoteErr] = useState(null);
   const [isYou, setIsYou] = useState(null);
-  const { loggedIn, setLoggedIn } = useContext(UserContext);
+  const [deleteButton, setDeleteButton] = useState(null);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const { loggedIn } = useContext(UserContext);
 
   useEffect(() => {
     setCommentVotes(votes);
     if (author === loggedIn) {
       setIsYou(" (You)");
+      setDeleteButton(
+        <button className="delete-button" onClick={handleDelete}>
+          DELETE
+        </button>
+      );
     }
   }, []);
 
@@ -38,7 +45,21 @@ export default function Comment({
     });
   };
 
+  const handleDelete = () => {
+    setIsDeleted(true);
+    deleteCommentById(comment_id).catch((err) => {
+      setIsDeleted(false);
+      setVoteErr("something went wrong while deleting your comment");
+    });
+  };
+
   const date = new Date(created_at);
+  if (isDeleted)
+    return (
+      <header className="deleted-message">
+        <h3>COMMENT DELETED</h3>
+      </header>
+    );
   return (
     <article className="comment">
       <p className="errmsg">{voteErr}</p>
@@ -63,6 +84,7 @@ export default function Comment({
           </div>
         </div>
       </div>
+      <div>{deleteButton}</div>
     </article>
   );
 }
