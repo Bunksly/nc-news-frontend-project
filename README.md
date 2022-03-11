@@ -1,4 +1,4 @@
-Deployed Version Link: nc-news-bunksly.netlify.app
+Deployed Version Link: https://nc-news-bunksly-protfolio.netlify.app/articles
 
 The project is a 'news' app that use a news API that I created during my first backend project. the app, has a /articles homepage from there you can select individual news articles and post comment on them so long as you are logged in, you can also vote on comments and articles.
 
