@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { UserContext } from "./contexts/user-context";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Title from "./components/Title";
 import Profile from "./components/Profile";
 import Articles from "./components/Articles";
@@ -19,6 +19,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="*" element={<ErrorPage error={"path"} />} />
+          <Route exact path="/" element={<Navigate replace to="/articles" />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:topic" element={<Articles />} />
           <Route path="/article/:article_id" element={<DetailedArticle />} />
