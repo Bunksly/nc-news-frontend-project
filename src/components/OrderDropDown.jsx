@@ -5,7 +5,10 @@ export default function OrderDropDown({ setOrder, selected }) {
 
   return (
     <form>
-      <label htmlFor="orderList">Order:</label>
+      <label className="navlabel" htmlFor="orderList">
+        Order:
+        <br />
+      </label>
       <select
         onChange={handleOrderChange}
         name="order"

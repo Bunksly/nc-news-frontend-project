@@ -4,7 +4,10 @@ export default function UserDropDown({ users }) {
   console.log(users);
   return (
     <div>
-      <label htmlFor="user-dropdown">Username: </label>
+      <label classname="navlabel" htmlFor="user-dropdown">
+        Username:
+        <br />
+      </label>
       <select id="user-dropdown">
         <option key="-" value="-------">
           {"-------"}

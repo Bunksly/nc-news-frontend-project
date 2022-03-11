@@ -18,7 +18,10 @@ export default function TopicDropDown({ selected }) {
 
   return (
     <form>
-      <label htmlFor="topics">Topic:</label>
+      <label className="navlabel" htmlFor="topics">
+        Topic:
+        <br />
+      </label>
       <select onChange={handleTopicChange} name="topics" value={selected}>
         <option key="all" value="all">
           all

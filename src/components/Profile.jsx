@@ -58,7 +58,9 @@ export default function Profile() {
           })}
         </select>
       </form>
-      <img className="user-pic" src={userPic}></img>
+      <div>
+        <img className="user-pic" alt="profile" src={userPic}></img>
+      </div>
     </div>
   );
 }

@@ -19,11 +19,25 @@ export default function Article({
           </Link>
         </div>
         <div className="article-bottom">
-          <h6>Topic:{topic}</h6>
-          <h6>Author: {author}</h6>
-          <h6>Created: {date.toLocaleDateString()}</h6>
-          <h6>Votes: {votes}</h6>
-          <h6>Comments ({comment_count})</h6>
+          <h6>
+            Topic: <br />
+            {topic}
+          </h6>
+          <h6>
+            Author: <br />
+            {author}
+          </h6>
+          <h6>
+            Created: <br />
+            {date.toLocaleDateString()}
+          </h6>
+          <h6>
+            Votes: <br />
+            {votes}
+          </h6>
+          <h6>
+            Comments <br />({comment_count})
+          </h6>
         </div>
       </div>
     </li>

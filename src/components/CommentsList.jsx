@@ -56,7 +56,9 @@ export default function CommentsList({ article_id, comment_count }) {
     setPostComment(
       <form onSubmit={handleSubmit} className="post-comment">
         <div>
-          <label htmlFor="commentbody">Comment:</label>
+          <label htmlFor="commentbody">
+            Comment: <br />
+          </label>
           <textarea id="commentbody"></textarea>
         </div>
         <div>

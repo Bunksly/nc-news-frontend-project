@@ -9,7 +9,10 @@ export default function SortDropDown({ setSortBy, selected }) {
 
   return (
     <form>
-      <label htmlFor="sortBy">Sort By:</label>
+      <label className="navlabel" htmlFor="sortBy">
+        Sort By:
+        <br />
+      </label>
       <select
         onChange={handleSortChange}
         name="sortBy"
